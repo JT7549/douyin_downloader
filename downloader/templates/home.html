@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>抖音无水印视频下载</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>抖音无水印视频下载器</h1>
+    </header>
+    <div class="container"> 
+        <form action="/download/" method="GET">
+            {% csrf_token %}
+            <input type="text" name="url" placeholder="输入抖音视频链接">
+            <button type="submit">下载</button>
+        </form>
+    </div>
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
