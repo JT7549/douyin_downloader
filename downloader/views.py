@@ -4,7 +4,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from.models import UserInfo
-#import requests
+import requests
 import os
 from django.http import HttpResponse, JsonResponse
 import re
@@ -28,7 +28,7 @@ def download(request):
 def home(request):
     return render(request, 'home.html')
 
-#def download(request):
+def download(request):
     if request.method == 'GET':
         url = request.GET.get('url')
         # 使用第三方库或自定义逻辑解析抖音视频链接
@@ -59,19 +59,19 @@ def insert_data(request):
 
 
 
-#def download(request):
+def download(request):
     # 假设请求中有一个名为 'url' 的参数，从中获取实际的视频URL
     video_url = request.GET.get('url')
     if video_url:
         try:
-            response = request.get(video_url)
+            response = requests.get(video_url)
             file_name = os.path.basename(video_url)
-            with open(file_name, 'wb') as f:
+            with open(file_name, 'web') as f:
                 f.write(response.content)
             # 处理下载逻辑，例如保存文件等
             #...
             return HttpResponse("下载成功")
-        except request.RequestException as e:
+        except requests.RequestException as e:
             return HttpResponse(f"下载失败: {str(e)}")
     else:
         return HttpResponse("缺少视频URL参数")
